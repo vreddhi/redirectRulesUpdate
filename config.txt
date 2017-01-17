@@ -9,6 +9,7 @@ access_url = https://akab-zdztncacl54c2xem-5zzjnbsv3m7llqtl.luna.akamaiapis.net
 
 [PROPERTY]
 property_name = www.vbhat.com
+version = 1
 
 [INPUT]
 input_csv_file = redirect_1.csv

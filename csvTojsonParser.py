@@ -1,7 +1,7 @@
 '''
 Python Script to parse a csv input file containing source and destination URLComponents
 and convert them to akamai PAPI specific json data. This script is limited to redirect
-behavior. You can find this script in https://github.com/vreddhi/RandomScripts
+behavior. You can find this script in https://github.com/vreddhi/
 '''
 import csv
 import json
@@ -13,13 +13,13 @@ import configparser
 class optionSelector(object):
     sourcequeryString = "fromFile"
     sourceProtocol = "fromFile"
-    sourcequeryStringNameCase = "yes"
-    sourcequeryStringValueCase = "yes"
-    sourcequeryStringNameWilCard = "yes"
-    sourcequeryStringValueWilCard = "yes"
+    sourcequeryStringNameCase = "no"
+    sourcequeryStringValueCase = "no"
+    sourcequeryStringNameWilCard = "no"
+    sourcequeryStringValueWilCard = "no"
     sourcePathComponent = "yes"
-    sourcePathCase = "yes"
-    sourceHostname = "yes"
+    sourcePathCase = "no"
+    sourceHostname = "fromFile"
     destinationProtocol = "fromFile"
     destinationHostname = "fromFile"
     destinationQueryString = "fromFile"
@@ -81,7 +81,7 @@ class optionSelector(object):
             elif self.sourceProtocol == "HTTPS":
                 criteria['options']['value'] = "HTTPS"
         #Match on Request Hostname
-        if self.sourceHostname == "yes" and srcURLComponents['Hostname'] and srcURLComponents['Hostname'] != '':
+        if self.sourceHostname == "fromFile" and srcURLComponents['Hostname'] and srcURLComponents['Hostname'] != '':
             criteria = {}
             criteria['options'] = {}
             criteria['name'] = 'hostname'
@@ -196,7 +196,6 @@ class optionSelector(object):
 
         childRedirectRulesSet = [] #This will contain the list of redirect rules
         parentRedirectRule = {} #This is the parent rule under which redirect rules will be populated as children
-        outputFileHandler = open('Redirect_JsonOutput.json','w')
         for line in inputFileReader:
             number = 1
             childRedirectRule = {}
@@ -224,8 +223,4 @@ class optionSelector(object):
         parentRedirectRule['name'] = "Automated Redirects"
         parentRedirectRule['behaviors'] = []
         parentRedirectRule['children'] = childRedirectRulesSet
-
-        jsonOutputFormat = json.dumps(parentRedirectRule)
-        outputFileHandler.write(jsonOutputFormat)
-        print("\nRedirect Rules in JSON format file is stored in Redirect_JsonOutput.json [This is the csv to json converted data]\n")
         return parentRedirectRule
