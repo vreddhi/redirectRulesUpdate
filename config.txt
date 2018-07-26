@@ -1,0 +1,2 @@
+[INPUT]
+input_csv_file = redirect_1.csv
