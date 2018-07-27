@@ -84,7 +84,7 @@ logging.basicConfig(format='%(asctime)s %(message)s',filename=loggingFileName,fi
 
 class PapiObjects(object):
     session = requests.Session()
-    baseUrl = access_url+'/papi/v0'
+    baseUrl = 'https://' + access_url+'/papi/v0'
     propertyFound = "NOT_FOUND"
     propertyDetails = {}
 
