@@ -1,2 +1,12 @@
+[CREDENTIALS]
+client_secret = xxxxxxxxxxx
+access_url = xxxxxxxxxxx
+access_token = xxxxxxxxxxx
+client_token = xxxxxxxxxxx
+
 [INPUT]
 input_csv_file = redirect_1.csv
+
+[PROPERTY]
+property_name = <property_name>
+version = <interger>
